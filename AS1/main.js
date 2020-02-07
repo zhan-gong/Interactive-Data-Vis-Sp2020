@@ -1,5 +1,5 @@
 
-d3.csv("../../data/Dota2_hearoes_data.csv").then(data => {
+d3.csv("../data/Dota2_hearoes_data.csv").then(data => {
   console.log("data", data);
   const table = d3.select("#d3-table");
 
