@@ -21,7 +21,7 @@ d3.csv("../../data/CoronaVirus.csv", d3.autoType).then(data => {
   const xScale = d3
     .scaleLinear()
     .domain([d3.min(data, d => d.Count), d3.max(data, d => d.Count)])
-    .range([width - margin.right, 0]);
+    .range([0, width - 3*margin.right]);
 
   // reference for d3.axis: https://github.com/d3/d3-axis
   // const yAxis = d3.axisBottom(xScale).ticks(data.length);
@@ -40,8 +40,8 @@ d3.csv("../../data/CoronaVirus.csv", d3.autoType).then(data => {
     .data(data)
     .join("rect")
     .attr("y", d => yScale(d.City) + margin.top)
-    .attr("x", margin.left)
-    .attr("width", d => width - margin.right - xScale(d.Count))
+    .attr("x", d => xScale(d3.min(data, d => d.Count))+margin.left)
+    .attr("width", d => xScale(d.Count))
     .attr("height", yScale.bandwidth())
     .attr("fill", "steelblue")
 
@@ -50,15 +50,14 @@ d3.csv("../../data/CoronaVirus.csv", d3.autoType).then(data => {
     .selectAll("text")
     .data(data)
     .join("text")
-    .attr("class", "label")
+    // .attr("class", "label")
     .attr("y", d => yScale(d.City) + margin.top)
-    .attr("x", margin.left)
-    // this allows us to position the text in the center of the bar
+    .attr("x", d => xScale(d.Count) + 110)
     // .attr("x", d => yScale(d.City) + (yScale.bandwidth() / 2))
     // .attr("y", d => xScale(d.Count))
     .text(d => d.Count)
-    .attr("dx", "2.34em")
-    .attr("dy", "1.5em");
+    // .attr("dx", "1.5em")
+      .attr("dy", "1.5em");
 
   svg
     .append("g")
