@@ -9,7 +9,11 @@ d3.csv("../data/CoronaVirus.csv", d3.autoType).then(data => {
     height = window.innerHeight,
     paddingInner = 0.2,
     margin = { top: 20, bottom: 40, left: 100, right: 100 };
-
+  
+  const barColor = d3
+    .scaleLinear()
+    .domain([d3.min(data, d => d.Count), d3.max(data, d => d.Count)])
+    .range([d3.interpolateGreens(0.5), d3.interpolateGreens(1)]);
   /** SCALES */
   // reference for d3.scales: https://github.com/d3/d3-scale
   const yScale = d3
@@ -43,7 +47,7 @@ d3.csv("../data/CoronaVirus.csv", d3.autoType).then(data => {
     .attr("x", d => xScale(d3.min(data, d => d.Count))+margin.left)
     .attr("width", d => xScale(d.Count))
     .attr("height", yScale.bandwidth())
-    .attr("fill", "steelblue")
+    .attr("fill", d => barColor(d.Count))
 
   // append text
   const text = svg
