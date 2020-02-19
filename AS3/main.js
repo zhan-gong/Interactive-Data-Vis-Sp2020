@@ -24,7 +24,7 @@ let state = {
 /**
  * LOAD DATA
  * */
-d3.json("../../data/environmentRatings.json", d3.autoType).then(raw_data => {
+d3.csv("../data/Popular_Baby_Names.csv", d3.autoType).then(raw_data => {
   console.log("raw_data", raw_data);
   state.data = raw_data;
   init();
@@ -38,12 +38,12 @@ function init() {
   // SCALES
   xScale = d3
     .scaleLinear()
-    .domain(d3.extent(state.data, d => d.ideology_rating))
+    .domain(d3.extent(state.data, d => d.Rank))
     .range([margin.left, width - margin.right]);
 
   yScale = d3
     .scaleLinear()
-    .domain(d3.extent(state.data, d => d.environmental_rating))
+    .domain(d3.extent(state.data, d => d.Count))
     .range([height - margin.bottom, margin.top]);
 
   // AXES
@@ -64,7 +64,7 @@ function init() {
   // add in dropdown options from the unique values in the data
   selectElement
     .selectAll("option")
-    .data(["All", "D", "R", "I"]) // unique data values-- (hint: to do this programmatically take a look `Sets`)
+    .data(["All", "FEMALE", "MALE"]) // unique data values-- (hint: to do this programmatically take a look `Sets`)
     .join("option")
     .attr("value", d => d)
     .text(d => d);
@@ -86,7 +86,7 @@ function init() {
     .attr("class", "axis-label")
     .attr("x", "50%")
     .attr("dy", "3em")
-    .text("Ideology Rating");
+    .text("Rank");
 
   // add the yAxis
   svg
@@ -99,7 +99,7 @@ function init() {
     .attr("y", "50%")
     .attr("dx", "-3em")
     .attr("writing-mode", "vertical-rl")
-    .text("Environmental Rating");
+    .text("Count");
 
   draw(); // calls the draw function
 }
@@ -113,7 +113,7 @@ function draw() {
   let filteredData = state.data;
   // if there is a selectedParty, filter the data before mapping it to our elements
   if (state.selectedParty !== "All") {
-    filteredData = state.data.filter(d => d.party === state.selectedParty);
+    filteredData = state.data.filter(d => d.Gender === state.selectedParty);
   }
 
   const dot = svg
@@ -128,19 +128,19 @@ function draw() {
           .attr("stroke", "lightgrey")
           .attr("opacity", 0.5)
           .attr("fill", d => {
-            if (d.party === "D") return "blue";
-            else if (d.party === "R") return "red";
-            else return "purple";
+            if (d.Gender === "MALE") return "blue";
+            else if (d.Gender === "FEMALE") return "red";
+            // else return "green";
           })
           .attr("r", radius)
-          .attr("cy", d => yScale(d.environmental_rating))
-          .attr("cx", d => margin.left) // initial value - to be transitioned
+          .attr("cy", d => yScale(d.Count))
+          .attr("cx", d => width) // initial value - to be transitioned
           .call(enter =>
             enter
               .transition() // initialize transition
-              .delay(d => 500 * d.ideology_rating) // delay on each element
+              .delay(d => 100 * d.Rank) // delay on each element
               .duration(500) // duration 500ms
-              .attr("cx", d => xScale(d.ideology_rating))
+              .attr("cx", d => xScale(d.Rank))
           ),
       update =>
         update.call(update =>
@@ -158,7 +158,7 @@ function draw() {
           // exit selections -- all the `.dot` element that no longer match to HTML elements
           exit
             .transition()
-            .delay(d => 50 * d.ideology_rating)
+            .delay(d => 50 * d.Rank)
             .duration(500)
             .attr("cx", width)
             .remove()
