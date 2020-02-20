@@ -128,8 +128,8 @@ function draw() {
           .attr("stroke", "lightgrey")
           .attr("opacity", 0.5)
           .attr("fill", d => {
-            if (d.Gender === "MALE") return "blue";
-            else if (d.Gender === "FEMALE") return "red";
+            if (d.Gender === "MALE") return "black";
+            else if (d.Gender === "FEMALE") return "pink";
             // else return "green";
           })
           .attr("r", radius)
@@ -160,7 +160,7 @@ function draw() {
             .transition()
             .delay(d => 50 * d.Rank)
             .duration(500)
-            .attr("cx", width)
+            .attr("fill", "white")
             .remove()
         )
     );
