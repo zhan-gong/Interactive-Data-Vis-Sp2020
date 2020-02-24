@@ -1,10 +1,7 @@
-// data load
-// reference for d3.autotype: https://github.com/d3/d3-dsv#autoType
+
 d3.csv("../data/CoronaVirus.csv", d3.autoType).then(data => {
   console.log(data);
 
-  /** CONSTANTS */
-  // constants help us reference the same values throughout our code
   const width = window.innerWidth * 0.9,
     height = window.innerHeight / 3,
     paddingInner = 0.2,
@@ -14,8 +11,7 @@ d3.csv("../data/CoronaVirus.csv", d3.autoType).then(data => {
     .scaleLinear()
     .domain([d3.min(data, d => d.Count), d3.max(data, d => d.Count)])
     .range([d3.interpolateGreens(0.5), d3.interpolateGreens(1)]);
-  /** SCALES */
-  // reference for d3.scales: https://github.com/d3/d3-scale
+
   const xScale = d3
     .scaleBand()
     .domain(data.map(d => d.City))
@@ -27,17 +23,13 @@ d3.csv("../data/CoronaVirus.csv", d3.autoType).then(data => {
     .domain([0, d3.max(data, d => d.Count)])
     .range([height - margin.bottom, margin.top]);
 
-  // reference for d3.axis: https://github.com/d3/d3-axis
   const xAxis = d3.axisBottom(xScale).ticks(data.length);
-
-  /** MAIN CODE */
   const svg = d3
     .select("#d3-container")
     .append("svg")
     .attr("width", width)
     .attr("height", height);
 
-  // append rects
   const rect = svg
     .selectAll("rect")
     .data(data)
@@ -47,7 +39,7 @@ d3.csv("../data/CoronaVirus.csv", d3.autoType).then(data => {
     .attr("width", xScale.bandwidth())
     .attr("height", d => height - margin.bottom - yScale(d.Count))
     .attr("fill", d => barColor(d.Count));
-  // append text
+
   const text = svg
     .selectAll("text")
     .data(data)
@@ -56,13 +48,6 @@ d3.csv("../data/CoronaVirus.csv", d3.autoType).then(data => {
       .attr("x", d => xScale(d.City) + (xScale.bandwidth() / 2) - 14)
       .attr("y", d => yScale(d.Count))
       .attr("dy", "-0.5em");
-    // .join("text")
-    // .attr("class", "label")
-    // this allows us to position the text in the center of the bar
-    // .attr("x", d => xScale(d.City) + (xScale.bandwidth() / 2))
-    // .attr("y", d => yScale(d.Count))
-    // .text(d => d.Count)
-    // .attr("dy", "1.25em");
 
   svg
     .append("g")
