@@ -26,5 +26,6 @@ d3.csv("../data/Dota2_hearoes_data.csv").then(data => {
     .selectAll("td")
     .data(d => Object.values(d))
     .join("td")
+    .attr("class", d=> +d > 1000000  ?  'high': null)
     .text(d => d);
 });
