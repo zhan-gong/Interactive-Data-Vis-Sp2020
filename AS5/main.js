@@ -101,6 +101,7 @@ function init() {
       .transition()
       .duration(500)
       .attr("fill","lightblue")
+      draw();
     })
     .on("mouseover", d => {
       const [mx, my] = d3.mouse(svg.node());
