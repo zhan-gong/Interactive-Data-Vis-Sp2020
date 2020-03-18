@@ -44,7 +44,7 @@ function init() {
     .attr("width", width)
     .attr("height", height);
 
-  const colorScale = d3.scaleOrdinal(d3.schemeSet3);
+  const colorScale = d3.scaleOrdinal(d3.schemeSet1);
 
   // make hierarchy
   const root = d3
