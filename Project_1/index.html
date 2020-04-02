@@ -1,32 +1,31 @@
 <!DOCTYPE html>
   <head>
     <meta charset="utf-8">
-    <!-- this is the title that goes in the browser tab name  -->
-    <title>Interactive Data Visualization Tutorial</title>
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,900&display=swap" rel="stylesheet">
+
+    <title>Project 1</title>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
   </head>
   <body>
     <header>
       <h1>Project 1</h1>
       <h2>Corona Virus in Hubei Province, China</h2>
-      <h3>Data Feb 23, 2020</h3>
+      <p>My project is related to the outbreak of coronavirus that happened in Wuhan, China. As of February 23rd, 77,048 coronavirus cases have been confirmed in China. In Wuhan , where the epidemic might have begun (which is also my hometown), more than 46,607 cases have been confirmed. The Chinese authorities have closed off Wuhan since January 23rd; in the following week, other cities in Hubei also went into lockdown to control the virus’ spread. </p>
+      <p>The chart below is showing the population in each city</p>  
     </header>
 
-    <div id="geo"> </div>
-    <div id="dashboard">
-      <!-- all we need is an element to select -->
-      <div id="table"> </div>
+    <div id="d3-container"> </div>
+
+    <p>The chart below shows the comfirmed cases in each city by date</p>
+    <p>I plan to show a map of comfirmed cases in Hubei Province</p>
+    <p>I'm still looking fot the json file but I'm not sure if I can find it. I guess I'll try my best to create a json file by myself.</p>
+    <label for="dropdown2">Select Here</label>
+    <select id="dropdown2" name="dropdown2"></select>
+    <div id="d3-continer2"></div>
+
     
-      <div id="barchart"> </div>
 
-   </div>
-
-
-    <!-- this is the line that loads in d3 -->
     <script src="../lib/d3.js"></script>
-    <script src="../lib/d3-array.js"></script>
-    <!-- this is the line that loads in the main js script -->
-    <script type="module" src="./index.js"></script>
+    <script src="./main.js"></script>
   </body>
 </html>
