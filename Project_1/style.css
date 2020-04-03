@@ -70,9 +70,3 @@ tr:hover {
 path.state {
   stroke: black;
 }
-
-#barchart {
-  position:absolute;
-  left:700px;
-  top:860px;
-}
