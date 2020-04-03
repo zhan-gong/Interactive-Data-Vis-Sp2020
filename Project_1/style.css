@@ -1,26 +1,78 @@
 body {
-  /* ref: https://fonts.google.com/specimen/Source+Sans+Pro?selection.family=Source+Sans+Pro */
   font-family: "Source Sans Pro", sans-serif;
   padding: 1em 3em;
 }
 
-.dot {
+#dashboard {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr, 1fr;
+  column-gap: 2em;
+}
+
+#table {
+  grid-row-start: 1;
+  grid-row-end: span 2;
+}
+
+#barchart, #geo {
+  padding-top: 1em;
+}
+
+thead,
+tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  border-bottom: 1px solid white;
+}
+
+tbody {
+  width: 100%;
+  display: block;
+  height: 70vh;
+  overflow: scroll;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.5em;
   cursor: pointer;
-  color: steelblue;
-  opacity: 0.5;
+  font-weight: lighter;
+  text-transform: capitalize;
 }
 
-.dot:hover {
-  fill: orange;
+tr:hover {
+  font-weight: 900;
 }
 
-.axis-label {
-  font-size: 14px;
-  fill: black;
-  text-anchor: middle;
+#geo {
+  display: flex;
+  flex-direction: row;
 }
 
-.trend {
-  fill: none;
+.metric {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.metric > .number {
+  color: #ccc;
+  font-size: 25px;
+}
+
+#tooltip {
+  display: block;
+  height: 50px;
+}
+
+path.state {
   stroke: black;
+}
+
+#barchart {
+  position:absolute;
+  left:700px;
+  top:860px;
 }
