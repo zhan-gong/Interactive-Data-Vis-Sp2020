@@ -1,8 +1,8 @@
 class Barchart {
 
   constructor(state, setGlobalState) {
-    this.width = window.innerWidth * 0.6;
-    this.height = window.innerHeight * 0.6;
+    this.width = window.innerWidth * 0.5;
+    this.height = window.innerHeight * 0.3;
     this.margins = { top: 20, bottom: 20, left: 20, right: 20 };
     this.duration = 1000;
     this.format = d3.format(",." + d3.precisionFixed(1) + "f");
@@ -67,7 +67,7 @@ class Barchart {
       .duration(this.duration)
       .attr("width", xScale.bandwidth())
       .attr("height", d => this.height - yScale(d.value))
-      .style("fill", d => d.metric === state.selectedMetric ? "purple" : "#ccc")
+      .style("fill", d => d.metric === state.selectedMetric ? "steelBlue" : "#ccc")
 
     bars
       .select("text")

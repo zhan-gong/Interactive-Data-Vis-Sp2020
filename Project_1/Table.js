@@ -12,7 +12,7 @@ class Table {
       .domain(d3.extent(slimmedData, d => d['Distance']))
       .range([0.5, 1]);
 
-    this.colorScale = d3.scaleSequential(d => d3.interpolateBuPu(logScale(d)));
+    this.colorScale = d3.scaleSequential(d => d3.interpolateYlGnBu(logScale(d)));
 
     const columns = ["Cities", "Distance/Miles from Wuhan"];
     const table = d3.select("#table").append("table");
