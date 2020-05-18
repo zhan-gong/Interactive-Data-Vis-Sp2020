@@ -1,13 +1,30 @@
 body {
   font-family: "Source Sans Pro", sans-serif;
+  font-size: large;
+  padding: 1em 3em;
+}
+
+p1 {
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 20px;
+  padding: 1em 3em;
+}
+
+p1 {
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 20px;
   padding: 1em 3em;
 }
 
 #dashboard {
   display: grid;
-  grid-template-columns: 1fr 2fr;
-  grid-template-rows: 1fr, 1fr;
+  grid-template-columns: 1fr 3fr ;
+  grid-template-rows: 1fr;
   column-gap: 2em;
+}
+
+#scatter {
+  display: grid;
 }
 
 #table {
@@ -69,4 +86,34 @@ tr:hover {
 
 path.state {
   stroke: black;
+}
+
+.dot {
+  cursor: pointer;
+  color: steelblue;
+  opacity: 0.5;
+}
+
+.dot:hover {
+  fill: orange;
+}
+
+.axis-label {
+  font-size: 14px;
+  fill: black;
+  text-anchor: middle;
+}
+
+.trend {
+  fill: none;
+  stroke: black;
+}
+
+.tooltip {
+  display: block;
+  height: fit-content;
+  background-color: steelblue;
+  opacity: 0.8;
+  pointer-events: none;
+  padding: 5px;
 }

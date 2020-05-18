@@ -4,17 +4,18 @@ class Table {
 
     const slimmedData = state.data.map(d => ({
       "Cities": d.Cities,
-      "Distance": d['Distance']
+      "Distance": d['Distance'],
+      "ConfirmedCases": d['ConfirmedCases']
     })).sort((a, b) => d3.descending(a['Distance'], b['Distance']))
 
     const logScale = d3
       .scaleSymlog()
-      .domain(d3.extent(slimmedData, d => d['Distance']))
+      .domain(d3.extent(slimmedData, d => d['ConfirmedCases']))
       .range([0.5, 1]);
 
     this.colorScale = d3.scaleSequential(d => d3.interpolateYlGnBu(logScale(d)));
 
-    const columns = ["Cities", "Distance/Miles from Wuhan"];
+    const columns = ["Cities", "Distance/Miles from Wuhan","Confirmed Cases"];
     const table = d3.select("#table").append("table");
     const format = d3.format(",." + d3.precisionFixed(1) + "f");
 
@@ -31,7 +32,7 @@ class Table {
       .selectAll("tr")
       .data(slimmedData)
       .join("tr")
-      .style("background-color", d => this.colorScale(d['Distance']))
+      .style("background-color", d => this.colorScale(d['ConfirmedCases']))
       .style("color", "#eee");
 
     this.tableRows
@@ -48,7 +49,7 @@ class Table {
   draw(state, setGlobalState) {
     
     this.tableRows.style("background-color", d =>
-      state.selectedState === d.Cities ? "grey" : this.colorScale(d['Distance'])
+      state.selectedState === d.Cities ? "grey" : this.colorScale(d['ConfirmedCases'])
     );
   }
 }

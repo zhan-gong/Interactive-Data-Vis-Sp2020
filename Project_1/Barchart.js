@@ -49,7 +49,8 @@ class Barchart {
             .call(enter => enter.append("text")),
         update => update,
         exit => exit.remove()
-      ).on("click", d => {
+      )
+      .on("click", d => {
         setGlobalState({ selectedMetric: d.metric });
       })
 

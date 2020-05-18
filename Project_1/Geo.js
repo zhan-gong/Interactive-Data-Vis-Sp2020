@@ -1,11 +1,9 @@
 class Geo {
 
   constructor(state, setGlobalState) {
-    // initialize properties here
     this.width = window.innerWidth * 0.4;
     this.height = window.innerHeight * 0.4;
     this.margins = { top: 20, bottom: 20, left: 20, right: 20 };
-    this.duration = 1000;
     this.format = d3.format(",." + d3.precisionFixed(1) + "f");
 
     this.svg = d3
@@ -28,14 +26,15 @@ class Geo {
     const path = d3.geoPath().projection(projection);
     const hubeimap = this.svg
 
-    // const filteredData = state.data.find(d => state.selectedState === d.Cities);
+    // const filteredData = state.ConfirmedCases.find(d => state.selectedState === d.Cities);
     // const geoData = state.data.map(d =>{
     //   return {
-    //     mapdata: state.geojson.features,
     //     state: state.selectedState,
+    //     value: filteredData,
     //   }
     // })
     // console.log(geoData)
+    // console.log(filteredData)
 
 
     hubeimap
@@ -51,17 +50,19 @@ class Geo {
 
       return this.colorScale(stateConfirmedCases)
     })
-
+    .on("click", function(d)
+    {
+     
+        d3.select(selectedState).selectAll("." + d).attr("fill", "green");		/* Highlight all counties in range selected */
+    });
+    // .on("click", d => {
+    //   this.svg.attr("fill-opacity","0.8")
+    //   setGlobalState(d.properties.name);})
       
     // hubeimap
     //   .data(state.geojson.features)
     //   .append("title").text(d => d.properties.name);
     
-    // hubeimap
-    //   .data(geoData.state)
-    //   .on("click", d => {
-    //     this.svg.attr("fill-opacity","0.8")
-    //     setGlobalState(d.properties.name);})
 
     const lables = this.svg
       .append("g")
@@ -71,6 +72,7 @@ class Geo {
       .append("text")
       .attr("class","lables")
       .attr('font-size', 12)
+      .attr("fill", 'white')
       .attr('text-anchor', 'middle')
       .attr("transform", function(d) {
 
