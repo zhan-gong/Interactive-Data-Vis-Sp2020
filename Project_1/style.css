@@ -116,4 +116,5 @@ path.state {
   opacity: 0.8;
   pointer-events: none;
   padding: 5px;
+  position: absolute;
 }

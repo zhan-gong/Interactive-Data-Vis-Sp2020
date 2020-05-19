@@ -66,7 +66,7 @@ const width = window.innerWidth *0.8,
   margin = { top: 20, bottom: 50, left: 60, right: 40 },
   radius = 8;
 
-d3.csv("../data/project1data.csv", d3.autoType).then(data => {
+d3.csv("../data/projectdatawithoutwuhan.csv", d3.autoType).then(data => {
     "raw_data", data;
     state.data = data;
     init2();
@@ -80,8 +80,7 @@ tooltip = container
   .append("div")
   .attr("class", "tooltip")
   .attr("width", 100)
-  .attr("height", 100)
-  .style("position", "absolute"); 
+  .attr("height", 100); 
 
 
 svg = container
@@ -91,7 +90,7 @@ svg = container
 
 const xScale = d3
 .scaleLinear()
-.domain(d3.extent(state.data, d => d.Distance))
+.domain([0, d3.max(state.data, d => d.Distance)])
 .range([margin.left, width - margin.right]);
 
 const yScale = d3
