@@ -15,7 +15,7 @@ class Table {
 
     this.colorScale = d3.scaleSequential(d => d3.interpolateYlGnBu(logScale(d)));
 
-    const columns = ["Cities", "Distance/Miles from Wuhan","Confirmed Cases"];
+    const columns = ["Cities", "Distance/kilometerss from Wuhan","Confirmed Cases"];
     const table = d3.select("#table").append("table");
     const format = d3.format(",." + d3.precisionFixed(1) + "f");
 

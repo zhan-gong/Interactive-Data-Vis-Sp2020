@@ -10,9 +10,15 @@ p1 {
   padding: 1em 3em;
 }
 
-p1 {
+p2 {
   font-family: "Source Sans Pro", sans-serif;
   font-size: 20px;
+  padding: 1em 3em;
+}
+
+p3 {
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 18px;
   padding: 1em 3em;
 }
 
